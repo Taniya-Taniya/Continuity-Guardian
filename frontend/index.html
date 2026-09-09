@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Continuity Guardian — Director's Room</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="leader-strip">
+    <div class="leader-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none">
+        <path d="M12 2 L20 5 V11 C20 16 16.5 19.7 12 21 C7.5 19.7 4 16 4 11 V5 Z" fill="currentColor" opacity="0.18"/>
+        <path d="M12 2 L20 5 V11 C20 16 16.5 19.7 12 21 C7.5 19.7 4 16 4 11 V5 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="M8.5 11.5 L11 14 L15.5 8.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="leader-title">
+      <span class="leader-name">Continuity Guardian</span>
+      <span class="leader-sub">Director's Room</span>
+    </div>
+
+    <span class="leader-tagline">Better Continuity, Smoother Stories ✨</span>
+
+    <div class="leader-project">
+      <span class="leader-project-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+          <path d="M7 18a4 4 0 0 1-.4-7.98A5.5 5.5 0 0 1 17.3 8.4 4.5 4.5 0 0 1 17 18H7Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="leader-project-text">
+        <span class="leader-project-label">Production</span>
+        <span class="leader-project-name" id="projectName">No script loaded yet</span>
+      </span>
+    </div>
+
+    <label class="upload-btn">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true">
+        <path d="M12 16V4M12 4 8.5 7.5M12 4l3.5 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M5 16v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Upload script (PDF)
+      <input type="file" id="scriptUploadInput" accept="application/pdf" hidden />
+    </label>
+  </header>
+
+  <div id="statusBanner" class="status-banner" hidden></div>
+
+  <div class="layout">
+
+    <!-- SCENE LIST -->
+    <aside class="scene-list" aria-label="Scene list">
+      <div class="scene-list-head">
+        <span class="scene-list-head-label">
+          <span class="scene-list-head-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none">
+              <path d="M4 8.5 5.2 5h13.6l1.2 3.5M4 8.5v10a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-10M4 8.5h16" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M7.5 5 9 8.5M12 5l1 3.5M16 5l1.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </span>
+          Scenes
+        </span>
+        <span class="scene-count" id="sceneCount">0</span>
+      </div>
+      <ul id="sceneListItems" class="scene-list-items"></ul>
+      <p id="sceneListEmpty" class="scene-list-empty" hidden>Upload a script to get started.</p>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+      <section class="take-compare" aria-label="Take comparison">
+        <div class="section-head">
+          <h1 id="activeSceneTitle">SC014 — INT. WAREHOUSE – NIGHT</h1>
+          <div class="lock-control">
+            <span id="lockStatusLabel" class="lock-status-label">Pending checks</span>
+            <button id="lockBtn" class="lock-btn" disabled>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
+                <rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.7"/>
+                <path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+              </svg>
+              Lock Scene
+            </button>
+          </div>
+        </div>
+
+        <div class="takes-grid">
+          <div class="take-card">
+            <div class="take-frame" id="takeFrameA">
+            <video
+  class="take-frame-video"
+  id="takeFrameVideoA"
+  controls
+  playsinline
+  preload="metadata"
+  hidden>
+</video>
+
+<img class="take-frame-img" id="takeFrameImgA" alt="Take 1 preview" hidden />
+              <span class="take-tag">TAKE <span id="takeAId">—</span></span>
+            </div>
+            <label class="upload-btn upload-btn--small">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true"><path d="M12 16V4M12 4 8.5 7.5M12 4l3.5 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 16v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Upload take
+              <input type="file" class="take-upload-input" data-slot="a" accept="video/*" hidden />
+            </label>
+          </div>
+          <div class="take-card">
+            <div class="take-frame" id="takeFrameB">
+<video
+  class="take-frame-video"
+  id="takeFrameVideoB"
+  controls
+  playsinline
+  preload="metadata"
+  hidden>
+</video>
+
+<img class="take-frame-img" id="takeFrameImgB" alt="Take 2 preview" hidden />              <span class="take-tag">TAKE <span id="takeBId">—</span></span>
+              <div class="flag-marker" id="flagMarker" hidden>
+                <span class="flag-dot"></span>
+              </div>
+            </div>
+            <label class="upload-btn upload-btn--small">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true"><path d="M12 16V4M12 4 8.5 7.5M12 4l3.5 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 16v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Upload take
+              <input type="file" class="take-upload-input" data-slot="b" accept="video/*" hidden />
+            </label>
+          </div>
+        </div>
+
+        <div class="flags-panel">
+          <div class="flags-panel-head">
+            <span class="section-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none">
+                <path d="M5 4v16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M5 4h11l-2 3.5L16 11H5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Continuity flags
+          </div>
+          <ul id="flagsList" class="flags-list"></ul>
+        </div>
+
+        <div class="notification-draft" id="notificationDraft" hidden>
+          <div class="notification-draft-head">
+            <span class="section-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none"><path d="M4 4h16v13H7l-3 3V4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+            </span>
+            Suggested notification to director
+          </div>
+          <p id="notificationDraftText"></p>
+        </div>
+      </section>
+
+      <section class="metrics-row" aria-label="Production metrics">
+        <div class="metric-card metric-card--risk">
+          <span class="metric-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="none"><circle cx="12" cy="12" r="7.5" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3.7" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg>
+          </span>
+          <span class="metric-label">Risk score</span>
+          <span class="metric-value" id="riskScoreValue">0</span>
+          <span class="metric-unit">/ 10</span>
+        </div>
+        <div class="metric-card metric-card--cost">
+          <span class="metric-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="none"><circle cx="9" cy="10" r="5" stroke="currentColor" stroke-width="1.7"/><circle cx="15" cy="15" r="5" stroke="currentColor" stroke-width="1.7"/></svg>
+          </span>
+          <span class="metric-label">Cost avoided</span>
+          <span class="metric-value" id="costAvoidedValue">$0</span>
+          <span class="metric-unit">est.</span>
+        </div>
+        <div class="metric-card metric-card--flags">
+          <span class="metric-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="none"><path d="M6 21V4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M6 4h12l-2.5 4L18 12H6" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="metric-label">Flags today</span>
+          <span class="metric-value" id="flagsTodayValue">0</span>
+          <span class="metric-unit">scenes affected</span>
+        </div>
+        <div class="metric-card metric-card--locked">
+          <span class="metric-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="none"><rect x="4" y="7" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="13" r="2.6" stroke="currentColor" stroke-width="1.7"/><path d="M9 7 10.5 4.5h3L15 7" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="metric-label">Scenes locked</span>
+          <span class="metric-value" id="scenesLockedValue">0 / 0</span>
+          <span class="metric-unit">shoot day 4</span>
+        </div>
+      </section>
+
+      <section class="trend-panel" aria-label="Risk trend across shoot days">
+        <div class="section-head">
+          <h2><span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="none"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>Reshoot risk — by shoot day</h2>
+        </div>
+        <canvas id="riskTrendCanvas" height="140"></canvas>
+      </section>
+
+      <section class="postprod-panel" aria-label="Post-production agents">
+        <div class="section-head">
+          <h2><span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M8 20h8M12 18v2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>Post-production agents</h2>
+        </div>
+        <div class="postprod-grid">
+
+          <div class="postprod-card">
+            <div class="postprod-card-head">
+              <span class="postprod-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="none"><path d="M12 3v18M8 6.5c0-1.4 1.8-2.5 4-2.5s4 1.1 4 2.5-1.8 2.5-4 2.5-4 1.1-4 2.5 1.8 2.5 4 2.5 4 1.1 4 2.5-1.8 2.5-4 2.5-4-1.1-4-2.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+              <span>Budget</span>
+              <button class="agent-run-btn" id="runBudgetBtn">Run</button>
+            </div>
+            <div id="budgetOutput" class="postprod-output postprod-output--empty">Not run yet.</div>
+          </div>
+
+          <div class="postprod-card">
+            <div class="postprod-card-head">
+              <span class="postprod-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="none"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+              <span>Performance</span>
+              <button class="agent-run-btn" id="runPerformanceBtn">Run</button>
+            </div>
+            <div id="performanceOutput" class="postprod-output postprod-output--empty">Not run yet.</div>
+          </div>
+
+          <div class="postprod-card">
+            <div class="postprod-card-head">
+              <span class="postprod-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="none"><path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="12" r="2.6" stroke="currentColor" stroke-width="1.7"/></svg></span>
+              <span>Previz</span>
+              <button class="agent-run-btn" id="runPrevizBtn">Run</button>
+            </div>
+            <div id="previzOutput" class="postprod-output postprod-output--empty">Not run yet.</div>
+          </div>
+
+          <div class="postprod-card">
+            <div class="postprod-card-head">
+              <span class="postprod-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="none"><path d="m12 3 2.6 5.9L21 9.8l-4.6 4.1L17.7 21 12 17.7 6.3 21l1.3-7.1L3 9.8l6.4-.9L12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+              <span>Score</span>
+              <button class="agent-run-btn" id="runScoreBtn">Run</button>
+            </div>
+            <div id="scoreOutput" class="postprod-output postprod-output--empty">Not run yet.</div>
+          </div>
+
+          <div class="postprod-card">
+            <div class="postprod-card-head">
+              <span class="postprod-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 12h17M12 3.5c2.2 2.3 3.4 5.3 3.4 8.5s-1.2 6.2-3.4 8.5c-2.2-2.3-3.4-5.3-3.4-8.5S9.8 5.8 12 3.5Z" stroke="currentColor" stroke-width="1.7"/></svg></span>
+              <span>Localization</span>
+              <select id="localizeLangSelect" class="lang-select">
+                <option value="es">Spanish</option>
+                <option value="hi">Hindi</option>
+                <option value="fr">French</option>
+                <option value="de">German</option>
+                <option value="ja">Japanese</option>
+              </select>
+              <button class="agent-run-btn" id="runLocalizationBtn">Run</button>
+            </div>
+            <div id="localizationOutput" class="postprod-output postprod-output--empty">Not run yet.</div>
+          </div>
+
+          <div class="postprod-card">
+            <div class="postprod-card-head">
+              <span class="postprod-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="none"><circle cx="12" cy="5" r="1.8" fill="currentColor"/><path d="M4 9.5 12 8l8 1.5M12 8v6M8 21l4-7 4 7M9 13l-3 2M15 13l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span>Accessibility</span>
+              <button class="agent-run-btn" id="runAccessibilityBtn">Run</button>
+            </div>
+            <div id="accessibilityOutput" class="postprod-output postprod-output--empty">Not run yet.</div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- AGENT STATUS RAIL -->
+    <aside class="agent-rail" aria-label="Agent pipeline status">
+      <div class="agent-rail-head">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="m12 2 2.2 4.6 5 .7-3.6 3.6.9 5.1L12 13.6l-4.5 2.4.9-5.1L4.8 7.3l5-.7L12 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        Agent pipeline
+      </div>
+      <ul id="agentList" class="agent-list"></ul>
+    </aside>
+
+  </div>
+
+  <div class="corner-flourish corner-flourish--left">Every frame matters ♡</div>
+  <div class="corner-flourish corner-flourish--right">AI Agents for Better Filmmaking ♡</div>
+
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

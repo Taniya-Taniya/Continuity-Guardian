@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Scene",
+  "description": "Single source of truth for a scene. Every agent in the pipeline reads and writes this shape.",
+  "type": "object",
+  "required": ["scene_id", "script_text", "location", "mood"],
+  "properties": {
+    "scene_id": { "type": "string", "example": "SC014" },
+    "script_text": { "type": "string" },
+    "location": { "type": "string", "example": "INT. WAREHOUSE - NIGHT" },
+    "props": { "type": "array", "items": { "type": "string" } },
+    "wardrobe": {
+      "type": "object",
+      "additionalProperties": { "type": "string" },
+      "example": { "John": "gray jacket", "Mira": "red dress" }
+    },
+    "mood": { "type": "string", "example": "tense" },
+    "dialogue": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "speaker": { "type": "string" },
+          "line": { "type": "string" }
+        }
+      }
+    },
+    "takes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "take_id": { "type": "integer" },
+          "video_url": { "type": "string" },
+          "continuity_flags": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": { "type": "string", "enum": ["prop", "wardrobe", "lighting", "dialogue"] },
+                "description": { "type": "string" },
+                "timestamp_sec": { "type": "number" },
+                "confidence": { "type": "number" },
+                "region": {
+                  "type": "object",
+                  "description": "approximate bounding box as fractions of frame width/height, for drawing a highlight overlay",
+                  "properties": {
+                    "x": { "type": "number" }, "y": { "type": "number" },
+                    "width": { "type": "number" }, "height": { "type": "number" }
+                  }
+                },
+                "reasoning": { "type": "string", "description": "short explanation of the evidence behind this flag" }
+              }
+            }
+          },
+          "risk_score": { "type": "number", "minimum": 0, "maximum": 10 },
+          "thumbnail_url": { "type": "string", "description": "plain frame grab, the 'human view'" },
+          "evidence_thumbnail_url": { "type": "string", "description": "frame grabbed at the flagged timestamp, the 'AI view'" },
+          "notification_draft": { "type": "string", "description": "auto-drafted message for the director, written by the orchestrator when flags are found" }
+        }
+      }
+    },
+    "budget_complexity_score": { "type": "number", "minimum": 0, "maximum": 10 },
+    "storyboard_url": { "type": "string" },
+    "score_track_url": { "type": "string" },
+    "dub_tracks": {
+      "type": "object",
+      "additionalProperties": { "type": "string" },
+      "example": { "es": "gs://.../sc014_es.wav", "hi": "gs://.../sc014_hi.wav" }
+    },
+    "captions": {
+      "type": "object",
+      "properties": {
+        "en": { "type": "string" },
+        "audio_description": { "type": "string" }
+      }
+    },
+    "lock_status": {
+      "type": "string",
+      "enum": ["unlocked", "pending_checks", "locked"],
+      "default": "unlocked"
+    }
+  }
+}

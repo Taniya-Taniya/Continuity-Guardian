@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+python-multipart
+python-dotenv
+pdfplumber
+google-genai
+Pillow
+opencv-python-headless
+requests
+# Google ADK — for the ADK-native agents in /agents (separate from
+# the FastAPI-driven agents in /agents, which work standalone without this).
+# This is the exact install command from the hackathon's own resources doc.
+google-cloud-aiplatform[agent_engines,adk]>=1.101.0
